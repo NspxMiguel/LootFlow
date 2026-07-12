@@ -323,6 +323,70 @@ function WhatsAppSection() {
         </div>
       </div>
 
+      {/* Self-host instructions */}
+      <Section icon={ExternalLink} color="blue" title={t('wa.selfhost_title')} subtitle={t('wa.selfhost_subtitle')} defaultOpen={false}>
+        <p className="text-[11px] text-slate-400 leading-relaxed">{t('wa.selfhost_desc')}</p>
+
+        {/* Requisitos */}
+        <div className="mt-3">
+          <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">{t('wa.selfhost_req_title')}</p>
+          <ul className="space-y-1">
+            {([t('wa.selfhost_req1'), t('wa.selfhost_req2'), t('wa.selfhost_req3')] as string[]).map((req, i) => (
+              <li key={i} className="flex items-start gap-2 text-[11px] text-slate-400">
+                <span className="text-primary mt-0.5 shrink-0">•</span>
+                {req}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Passos */}
+        <div className="mt-4">
+          <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">{t('wa.selfhost_steps_title')}</p>
+          <div className="space-y-2">
+            {([
+              t('wa.selfhost_step1'),
+              t('wa.selfhost_step2'),
+              t('wa.selfhost_step3'),
+              t('wa.selfhost_step4'),
+              t('wa.selfhost_step5'),
+            ] as string[]).map((step, i) => (
+              <div key={i} className="flex gap-2.5 items-start">
+                <span className="shrink-0 w-4 h-4 rounded-full bg-primary/15 text-primary text-[9px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                <p className="text-[11px] text-slate-400 leading-relaxed">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bloco de comandos */}
+        <pre className="mt-4 rounded-xl bg-black/50 border border-white/[0.05] p-3 text-[11px] text-slate-300 font-mono overflow-x-auto whitespace-pre leading-relaxed">
+{`git clone https://github.com/spxmiguel/lootflow-bot
+cd lootflow-bot
+cp .env.example .env
+# edite o .env com suas credenciais do Firebase
+npm install
+npm start`}
+        </pre>
+
+        {/* Aviso */}
+        <div className="flex items-start gap-2 mt-3 p-3 rounded-xl bg-amber-400/5 border border-amber-400/20">
+          <span className="text-amber-400 text-xs mt-0.5 shrink-0">⚠</span>
+          <p className="text-[11px] text-amber-300/70 leading-relaxed">{t('wa.selfhost_note')}</p>
+        </div>
+
+        {/* Link repo */}
+        <a
+          href="https://github.com/spxmiguel/lootflow-bot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 flex items-center gap-1.5 text-[11px] text-primary hover:underline w-fit"
+        >
+          <ExternalLink size={11} />
+          {t('wa.selfhost_repo')}
+        </a>
+      </Section>
+
       {/* 1. Conexão & Status */}
       <Section icon={MessageCircle} color="green" title={<span className="flex items-center gap-2">{t('wa.section_connection')} <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-400/15 text-amber-400 border border-amber-400/30">BETA</span></span> as any} subtitle={t('wa.section_connection_desc')} defaultOpen={true}>
         {/* Beta warning */}
