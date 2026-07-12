@@ -314,6 +314,15 @@ function WhatsAppSection() {
 
   return (
     <div className="space-y-5">
+      {/* Banner: serviço desativado */}
+      <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/[0.08] border border-red-500/30">
+        <AlertTriangle size={16} className="text-red-400 mt-0.5 shrink-0" />
+        <div>
+          <p className="text-sm font-semibold text-red-400">{t('wa.service_down_title')}</p>
+          <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">{t('wa.service_down_desc')}</p>
+        </div>
+      </div>
+
       {/* 1. Conexão & Status */}
       <Section icon={MessageCircle} color="green" title={<span className="flex items-center gap-2">{t('wa.section_connection')} <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-400/15 text-amber-400 border border-amber-400/30">BETA</span></span> as any} subtitle={t('wa.section_connection_desc')} defaultOpen={true}>
         {/* Beta warning */}

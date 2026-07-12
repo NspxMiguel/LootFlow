@@ -586,6 +586,9 @@ const translations = {
     'layout.settings_mobile': 'Ajustes',
 
     // WhatsApp
+    'wa.service_down_title': 'Serviço temporariamente fora do ar',
+    'wa.service_down_desc': 'A VPS gratuita que utilizávamos para conectar o bot ao WhatsApp teve o trial encerrado e não temos recursos para mantê-la no ar no momento. As configurações abaixo ficam salvas, mas as mensagens não serão enviadas enquanto o serviço estiver desativado.',
+    'wa.beta_warning': 'Funcionalidade em beta — pode ser instável e às vezes não funcionar corretamente.',
     'wa.section_connection': 'Conexão & Status',
     'wa.section_connection_desc': 'Ative o bot e configure seu número de celular',
     'wa.info_phone': 'O número que você coloca aqui é o seu número — onde vai receber as mensagens. O bot envia de um número dedicado.',
@@ -1254,6 +1257,9 @@ const translations = {
     'layout.settings_mobile': 'Settings',
 
     // WhatsApp
+    'wa.service_down_title': 'Service temporarily unavailable',
+    'wa.service_down_desc': 'The free VPS we used to connect the bot to WhatsApp had its trial expire and we currently lack the resources to keep it running. Your settings below are saved, but messages will not be sent while the service is down.',
+    'wa.beta_warning': 'Feature in beta — may be unstable and sometimes not work correctly.',
     'wa.section_connection': 'Connection & Status',
     'wa.section_connection_desc': 'Activate the bot and configure your mobile number',
     'wa.info_phone': 'The number you put here is your number — where you will receive the messages. The bot sends from a dedicated number.',
