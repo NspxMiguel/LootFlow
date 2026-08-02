@@ -10,9 +10,9 @@ function MarkIcon() {
   );
 }
 
-const APP_URL      = 'https://spxmiguel.github.io/LootFlow/app/'
-const GITHUB_URL   = 'https://github.com/spxmiguel/LootFlow'
-const CHANGELOG_URL = 'https://github.com/spxmiguel/LootFlow/releases'
+const APP_URL      = 'https://nspxmiguel.github.io/LootFlow/app/'
+const GITHUB_URL   = 'https://github.com/NspxMiguel/LootFlow'
+const CHANGELOG_URL = 'https://github.com/NspxMiguel/LootFlow/releases'
 const SETTINGS_WA_URL = `${APP_URL}#settings`
 
 /* ---------- NAV ---------- */

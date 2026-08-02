@@ -361,7 +361,7 @@ function WhatsAppSection() {
 
         {/* Bloco de comandos */}
         <pre className="mt-4 rounded-xl bg-black/50 border border-white/[0.05] p-3 text-[11px] text-slate-300 font-mono overflow-x-auto whitespace-pre leading-relaxed">
-{`git clone https://github.com/spxmiguel/lootflow-bot
+{`git clone https://github.com/NspxMiguel/lootflow-bot
 cd lootflow-bot
 cp .env.example .env
 # edite o .env com suas credenciais do Firebase
@@ -377,7 +377,7 @@ npm start`}
 
         {/* Link repo */}
         <a
-          href="https://github.com/spxmiguel/lootflow-bot"
+          href="https://github.com/NspxMiguel/lootflow-bot"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-3 flex items-center gap-1.5 text-[11px] text-primary hover:underline w-fit"
@@ -1858,7 +1858,7 @@ export default function Settings() {
             {t('settings.footer_terms')}
           </button>
           <span>·</span>
-          <a href="https://github.com/spxmiguel/LootFlow" target="_blank" rel="noreferrer"
+          <a href="https://github.com/NspxMiguel/LootFlow" target="_blank" rel="noreferrer"
             className="hover:text-slate-500 transition-colors inline-flex items-center gap-1 underline underline-offset-2">
             {t('settings.footer_github')} <ExternalLink size={10} />
           </a>

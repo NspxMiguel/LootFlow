@@ -258,7 +258,7 @@ export default function AuthPage({ onBack: _ }: { onBack?: () => void }) {
         <div className="bg-texture" aria-hidden="true" />
         {!inElectron && (
           <a
-            href="https://spxmiguel.github.io/LootFlow/"
+            href="https://nspxmiguel.github.io/LootFlow/"
             className="absolute left-4 top-4 z-20 inline-flex items-center gap-2 rounded-xl border border-white/[0.06] bg-[#11161d]/85 px-3 py-2 text-xs font-medium text-slate-400 backdrop-blur hover:text-slate-100 hover:border-white/[0.12] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />

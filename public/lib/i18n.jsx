@@ -103,11 +103,11 @@ const dict = {
     "wa.mock.status": "digitando…",
     "wa.mock.day": "hoje · ter, 27 mai",
     "wa.mock.composer": "Mensagem",
-    "wa.mock.1": "🎮 *LootFlow* — Oi! 👋\n\nFaltam drops essa semana:\n• AKM — 0/2 drops\n• servente de pedreiro — 1/2 drops\n\nRegistra em: spxmiguel.github.io/LootFlow",
+    "wa.mock.1": "🎮 *LootFlow* — Oi! 👋\n\nFaltam drops essa semana:\n• AKM — 0/2 drops\n• servente de pedreiro — 1/2 drops\n\nRegistra em: nspxmiguel.github.io/LootFlow",
     "wa.mock.2": "STATUS",
     "wa.mock.3": "🎮 *LootFlow* — Drops desta semana\n\n❌ AKM: 0/2 drops · R$ 0,00\n🟡 servente de pedreiro: 1/2 · R$ 9,10\n\n_Responda AJUDA para ver comandos._",
     "wa.mock.4": "AJUDA",
-    "wa.mock.5": "🎮 *LootFlow Bot* — Comandos\n\n*STATUS* — drops desta semana\n*AJUDA* — esta lista\n*PARAR* — desativar lembretes\n\n👉 spxmiguel.github.io/LootFlow",
+    "wa.mock.5": "🎮 *LootFlow Bot* — Comandos\n\n*STATUS* — drops desta semana\n*AJUDA* — esta lista\n*PARAR* — desativar lembretes\n\n👉 nspxmiguel.github.io/LootFlow",
     "wa.mock.6": "",
 
     "privacy.title": "Seus dados ficam no seu dispositivo.",
@@ -122,7 +122,7 @@ const dict = {
     "footer.github": "GitHub",
     "footer.changelog": "Changelog",
     "footer.privacy": "Privacy",
-    "footer.made": "feito por @spxmiguel",
+    "footer.made": "feito por @NspxMiguel",
   },
   en: {
     "nav.features": "Features",
@@ -224,11 +224,11 @@ const dict = {
     "wa.mock.status": "typing…",
     "wa.mock.day": "today · tue, may 27",
     "wa.mock.composer": "Message",
-    "wa.mock.1": "🎮 *LootFlow* — Hey! 👋\n\nDrops pending this week:\n• AKM — 0/2 drops\n• servente de pedreiro — 1/2 drops\n\nLog at: spxmiguel.github.io/LootFlow",
+    "wa.mock.1": "🎮 *LootFlow* — Hey! 👋\n\nDrops pending this week:\n• AKM — 0/2 drops\n• servente de pedreiro — 1/2 drops\n\nLog at: nspxmiguel.github.io/LootFlow",
     "wa.mock.2": "STATUS",
     "wa.mock.3": "🎮 *LootFlow* — This week's drops\n\n❌ AKM: 0/2 drops · R$ 0.00\n🟡 servente de pedreiro: 1/2 · R$ 9.10\n\n_Reply HELP to see commands._",
     "wa.mock.4": "HELP",
-    "wa.mock.5": "🎮 *LootFlow Bot* — Commands\n\n*STATUS* — this week's drops\n*HELP* — this list\n*STOP* — disable reminders\n\n👉 spxmiguel.github.io/LootFlow",
+    "wa.mock.5": "🎮 *LootFlow Bot* — Commands\n\n*STATUS* — this week's drops\n*HELP* — this list\n*STOP* — disable reminders\n\n👉 nspxmiguel.github.io/LootFlow",
     "wa.mock.6": "",
 
     "privacy.title": "Your data stays on your device.",
@@ -243,7 +243,7 @@ const dict = {
     "footer.github": "GitHub",
     "footer.changelog": "Changelog",
     "footer.privacy": "Privacy",
-    "footer.made": "made by @spxmiguel",
+    "footer.made": "made by @NspxMiguel",
   },
 };
 

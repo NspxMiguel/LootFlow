@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 export type LegalType = 'privacy' | 'terms'
 
-const GITHUB_URL = 'https://github.com/spxmiguel/LootFlow'
+const GITHUB_URL = 'https://github.com/NspxMiguel/LootFlow'
 const GITHUB_ISSUES = `${GITHUB_URL}/issues`
 const UPDATED_AT = 'Maio 2026'
 
@@ -89,7 +89,7 @@ function PrivacyContent() {
           Abra uma issue:{' '}
           <a href={GITHUB_ISSUES} target="_blank" rel="noreferrer"
             className="text-primary hover:underline inline-flex items-center gap-1">
-            github.com/spxmiguel/LootFlow/issues <ExternalLink size={11} />
+            github.com/NspxMiguel/LootFlow/issues <ExternalLink size={11} />
           </a>
         </p>
       </section>
@@ -131,7 +131,7 @@ function TermsContent() {
         <p>
           <a href={GITHUB_URL} target="_blank" rel="noreferrer"
             className="text-primary hover:underline inline-flex items-center gap-1">
-            github.com/spxmiguel/LootFlow <ExternalLink size={11} />
+            github.com/NspxMiguel/LootFlow <ExternalLink size={11} />
           </a>
           {' '}— licença e histórico de mudanças no repositório.
         </p>
@@ -142,7 +142,7 @@ function TermsContent() {
         <p>
           <a href={GITHUB_ISSUES} target="_blank" rel="noreferrer"
             className="text-primary hover:underline inline-flex items-center gap-1">
-            github.com/spxmiguel/LootFlow/issues <ExternalLink size={11} />
+            github.com/NspxMiguel/LootFlow/issues <ExternalLink size={11} />
           </a>
         </p>
       </section>

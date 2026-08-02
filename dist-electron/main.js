@@ -1,7 +1,7 @@
 import { app as e, ipcMain as d, shell as h, Menu as u, BrowserWindow as r } from "electron";
 import { fileURLToPath as f } from "node:url";
 import i from "node:path";
-const c = i.dirname(f(import.meta.url)), g = e.isPackaged ? "https://spxmiguel.github.io/LootFlow/app/" : "http://localhost:5173/app/", m = e.isPackaged ? "https://spxmiguel.github.io/LootFlow/app/?electron-auth=1" : "http://localhost:5173/app/?electron-auth=1", w = e.isPackaged ? i.join(process.resourcesPath, "build-assets/icon-512.png") : i.join(c, "../build-assets/icon-512.png");
+const c = i.dirname(f(import.meta.url)), g = e.isPackaged ? "https://nspxmiguel.github.io/LootFlow/app/" : "http://localhost:5173/app/", m = e.isPackaged ? "https://nspxmiguel.github.io/LootFlow/app/?electron-auth=1" : "http://localhost:5173/app/?electron-auth=1", w = e.isPackaged ? i.join(process.resourcesPath, "build-assets/icon-512.png") : i.join(c, "../build-assets/icon-512.png");
 e.commandLine.appendSwitch("use-mock-keychain");
 const k = e.requestSingleInstanceLock();
 k || e.quit();
