@@ -10,7 +10,10 @@ function MarkIcon() {
   );
 }
 
-const APP_URL      = 'https://nspxmiguel.github.io/LootFlow/app/'
+// Relativo de propósito: a mesma página é servida em nspxmiguel.github.io e em
+// nspx.dev/LootFlow/. Com o endereço escrito por extenso, quem entrava pelo domínio
+// próprio era jogado de volta para o github.io no primeiro clique.
+const APP_URL      = 'app/'
 const GITHUB_URL   = 'https://github.com/NspxMiguel/LootFlow'
 const CHANGELOG_URL = 'https://github.com/NspxMiguel/LootFlow/releases'
 const SETTINGS_WA_URL = `${APP_URL}#settings`
