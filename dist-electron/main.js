@@ -1,14 +1,14 @@
-import { app as e, ipcMain as d, shell as h, Menu as u, BrowserWindow as r } from "electron";
-import { fileURLToPath as f } from "node:url";
-import i from "node:path";
-const c = i.dirname(f(import.meta.url)), g = e.isPackaged ? "https://nspxmiguel.github.io/LootFlow/app/" : "http://localhost:5173/app/", m = e.isPackaged ? "https://nspxmiguel.github.io/LootFlow/app/?electron-auth=1" : "http://localhost:5173/app/?electron-auth=1", w = e.isPackaged ? i.join(process.resourcesPath, "build-assets/icon-512.png") : i.join(c, "../build-assets/icon-512.png");
+import { app as e, ipcMain as h, shell as u, Menu as f, BrowserWindow as c } from "electron";
+import { fileURLToPath as w } from "node:url";
+import s from "node:path";
+const l = s.dirname(w(import.meta.url)), p = "https://www.nspx.dev/LootFlow/app/", m = e.isPackaged ? p : "http://localhost:5173/app/", g = e.isPackaged ? `${p}?electron-auth=1` : "http://localhost:5173/app/?electron-auth=1", k = e.isPackaged ? s.join(process.resourcesPath, "build-assets/icon-512.png") : s.join(l, "../build-assets/icon-512.png");
 e.commandLine.appendSwitch("use-mock-keychain");
-const k = e.requestSingleInstanceLock();
-k || e.quit();
+const P = e.requestSingleInstanceLock();
+P || e.quit();
 let o = null;
-function p(s) {
+function d(i) {
   try {
-    const t = new URL(s);
+    const t = new URL(i);
     if (t.host === "auth") {
       const n = t.searchParams.get("idToken"), a = t.searchParams.get("accessToken");
       n && o && (o.webContents.send("auth:credential", { idToken: n, accessToken: a }), o.isMinimized() && o.restore(), o.focus());
@@ -17,26 +17,26 @@ function p(s) {
     console.error("[deep-link] parse error:", t);
   }
 }
-process.defaultApp ? process.argv.length >= 2 && e.setAsDefaultProtocolClient("lootflow", process.execPath, [i.resolve(process.argv[1])]) : e.setAsDefaultProtocolClient("lootflow");
-e.on("second-instance", (s, t) => {
+process.defaultApp ? process.argv.length >= 2 && e.setAsDefaultProtocolClient("lootflow", process.execPath, [s.resolve(process.argv[1])]) : e.setAsDefaultProtocolClient("lootflow");
+e.on("second-instance", (i, t) => {
   o && (o.isMinimized() && o.restore(), o.focus());
   const n = t.find((a) => a.startsWith("lootflow://"));
-  n && p(n);
+  n && d(n);
 });
-e.on("open-url", (s, t) => {
-  p(t);
+e.on("open-url", (i, t) => {
+  d(t);
 });
-d.handle("auth:open-browser", () => {
-  h.openExternal(m);
+h.handle("auth:open-browser", () => {
+  u.openExternal(g);
 });
-function l() {
-  o = new r({
+function r() {
+  o = new c({
     title: "LootFlow",
     width: 1280,
     height: 800,
     minWidth: 900,
     minHeight: 600,
-    icon: w,
+    icon: k,
     autoHideMenuBar: !0,
     webPreferences: {
       nodeIntegration: !1,
@@ -47,13 +47,13 @@ function l() {
       // never runs and window.electronAPI stays undefined in the renderer.
       sandbox: !1,
       backgroundThrottling: !1,
-      preload: i.join(c, "preload.js")
+      preload: s.join(l, "preload.js")
     }
-  }), o.loadURL(g);
+  }), o.loadURL(m);
 }
 e.whenReady().then(() => {
-  u.setApplicationMenu(null), l(), e.on("activate", () => {
-    r.getAllWindows().length === 0 && l();
+  f.setApplicationMenu(null), r(), e.on("activate", () => {
+    c.getAllWindows().length === 0 && r();
   });
 });
 e.on("window-all-closed", () => {

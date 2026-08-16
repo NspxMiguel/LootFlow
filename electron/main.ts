@@ -4,16 +4,16 @@ import path from 'node:path'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// Electron loads the live GitHub Pages app in production so Firebase Auth sees
-// the authorized domain (nspxmiguel.github.io). In development, it loads localhost.
-const APP_URL = app.isPackaged
-  ? 'https://nspxmiguel.github.io/LootFlow/app/'
-  : 'http://localhost:5173/app/'
+// Electron loads the live app in production; in development it loads localhost.
+// The address is the project's own domain, which serves the same build through
+// the NSPX Hub proxy. www.nspx.dev is an authorized domain in Firebase Auth, so
+// the sign-in redirect resolves there instead of leaving for github.io.
+const SITE = 'https://www.nspx.dev/LootFlow/app/'
+
+const APP_URL = app.isPackaged ? SITE : 'http://localhost:5173/app/'
 
 // Auth callback URL opened in the user's real browser:
-const AUTH_URL = app.isPackaged
-  ? 'https://nspxmiguel.github.io/LootFlow/app/?electron-auth=1'
-  : 'http://localhost:5173/app/?electron-auth=1'
+const AUTH_URL = app.isPackaged ? `${SITE}?electron-auth=1` : 'http://localhost:5173/app/?electron-auth=1'
 
 const ICON = app.isPackaged
   ? path.join(process.resourcesPath, 'build-assets/icon-512.png')

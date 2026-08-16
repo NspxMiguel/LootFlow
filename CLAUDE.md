@@ -112,7 +112,7 @@ Two modes — `authMode: 'firebase' | 'local'`:
 - Config em `src/lib/config.ts` (hardcoded) + `.env.production` (ambos devem estar sincronizados)
 - Firestore rules em `firestore.rules` — deploy: `firebase deploy --only firestore:rules --project lootflow-92afd`
 - `AppSettings.firebaseSyncEnabled` gates ALL Firestore writes.
-- Authorized domains: localhost, lootflow-92afd.firebaseapp.com, lootflow-92afd.web.app, nspxmiguel.github.io
+- Authorized domains: localhost, lootflow-92afd.firebaseapp.com, lootflow-92afd.web.app, nspxmiguel.github.io, spxmiguel.github.io, www.nspx.dev, nspx.dev
 
 ## Steam API
 - `STEAM_APP_ID = 730` (CS2)
