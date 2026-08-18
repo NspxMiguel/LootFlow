@@ -1,61 +1,79 @@
-import { app as e, ipcMain as h, shell as u, Menu as f, BrowserWindow as c } from "electron";
-import { fileURLToPath as w } from "node:url";
-import s from "node:path";
-const l = s.dirname(w(import.meta.url)), p = "https://www.nspx.dev/LootFlow/app/", m = e.isPackaged ? p : "http://localhost:5173/app/", g = e.isPackaged ? `${p}?electron-auth=1` : "http://localhost:5173/app/?electron-auth=1", k = e.isPackaged ? s.join(process.resourcesPath, "build-assets/icon-512.png") : s.join(l, "../build-assets/icon-512.png");
-e.commandLine.appendSwitch("use-mock-keychain");
-const P = e.requestSingleInstanceLock();
-P || e.quit();
-let o = null;
-function d(i) {
-  try {
-    const t = new URL(i);
-    if (t.host === "auth") {
-      const n = t.searchParams.get("idToken"), a = t.searchParams.get("accessToken");
-      n && o && (o.webContents.send("auth:credential", { idToken: n, accessToken: a }), o.isMinimized() && o.restore(), o.focus());
-    }
-  } catch (t) {
-    console.error("[deep-link] parse error:", t);
-  }
+import { BrowserWindow, Menu, app, ipcMain, shell } from "electron";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+//#region electron/main.ts
+var __dirname = path.dirname(fileURLToPath(import.meta.url));
+var SITE = "https://www.nspx.dev/LootFlow/app/";
+var APP_URL = app.isPackaged ? SITE : "http://localhost:5173/app/";
+var AUTH_URL = app.isPackaged ? `${SITE}?electron-auth=1` : "http://localhost:5173/app/?electron-auth=1";
+var ICON = app.isPackaged ? path.join(process.resourcesPath, "build-assets/icon-512.png") : path.join(__dirname, "../build-assets/icon-512.png");
+app.commandLine.appendSwitch("use-mock-keychain");
+if (!app.requestSingleInstanceLock()) app.quit();
+var win = null;
+function handleDeepLink(url) {
+	try {
+		const u = new URL(url);
+		if (u.host === "auth") {
+			const idToken = u.searchParams.get("idToken");
+			const accessToken = u.searchParams.get("accessToken");
+			if (idToken && win) {
+				win.webContents.send("auth:credential", {
+					idToken,
+					accessToken
+				});
+				if (win.isMinimized()) win.restore();
+				win.focus();
+			}
+		}
+	} catch (e) {
+		console.error("[deep-link] parse error:", e);
+	}
 }
-process.defaultApp ? process.argv.length >= 2 && e.setAsDefaultProtocolClient("lootflow", process.execPath, [s.resolve(process.argv[1])]) : e.setAsDefaultProtocolClient("lootflow");
-e.on("second-instance", (i, t) => {
-  o && (o.isMinimized() && o.restore(), o.focus());
-  const n = t.find((a) => a.startsWith("lootflow://"));
-  n && d(n);
+if (process.defaultApp) {
+	if (process.argv.length >= 2) app.setAsDefaultProtocolClient("lootflow", process.execPath, [path.resolve(process.argv[1])]);
+} else app.setAsDefaultProtocolClient("lootflow");
+app.on("second-instance", (_event, commandLine) => {
+	if (win) {
+		if (win.isMinimized()) win.restore();
+		win.focus();
+	}
+	const url = commandLine.find((arg) => arg.startsWith("lootflow://"));
+	if (url) handleDeepLink(url);
 });
-e.on("open-url", (i, t) => {
-  d(t);
+app.on("open-url", (_event, url) => {
+	handleDeepLink(url);
 });
-h.handle("auth:open-browser", () => {
-  u.openExternal(g);
+ipcMain.handle("auth:open-browser", () => {
+	shell.openExternal(AUTH_URL);
 });
-function r() {
-  o = new c({
-    title: "LootFlow",
-    width: 1280,
-    height: 800,
-    minWidth: 900,
-    minHeight: 600,
-    icon: k,
-    autoHideMenuBar: !0,
-    webPreferences: {
-      nodeIntegration: !1,
-      contextIsolation: !0,
-      // sandbox: false is required for ESM preload scripts (import syntax) to
-      // work correctly. Electron v20+ defaults sandbox to true, which breaks
-      // ESM module loading in the preload — contextBridge.exposeInMainWorld
-      // never runs and window.electronAPI stays undefined in the renderer.
-      sandbox: !1,
-      backgroundThrottling: !1,
-      preload: s.join(l, "preload.js")
-    }
-  }), o.loadURL(m);
+function createWindow() {
+	win = new BrowserWindow({
+		title: "LootFlow",
+		width: 1280,
+		height: 800,
+		minWidth: 900,
+		minHeight: 600,
+		icon: ICON,
+		autoHideMenuBar: true,
+		webPreferences: {
+			nodeIntegration: false,
+			contextIsolation: true,
+			sandbox: false,
+			backgroundThrottling: false,
+			preload: path.join(__dirname, "preload.js")
+		}
+	});
+	win.loadURL(APP_URL);
 }
-e.whenReady().then(() => {
-  f.setApplicationMenu(null), r(), e.on("activate", () => {
-    c.getAllWindows().length === 0 && r();
-  });
+app.whenReady().then(() => {
+	Menu.setApplicationMenu(null);
+	createWindow();
+	app.on("activate", () => {
+		if (BrowserWindow.getAllWindows().length === 0) createWindow();
+	});
 });
-e.on("window-all-closed", () => {
-  process.platform !== "darwin" && e.quit();
+app.on("window-all-closed", () => {
+	if (process.platform !== "darwin") app.quit();
 });
+//#endregion
+export {};

@@ -29,14 +29,17 @@ export default defineConfig({
     assetsDir: 'assets',
     chunkSizeWarningLimit: 650,
     rollupOptions: {
-      input: resolve(__dirname, 'app/index.html'),
+      input: resolve(import.meta.dirname, 'app/index.html'),
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
-          charts: ['recharts'],
-          motion: ['framer-motion'],
-          export: ['xlsx'],
+        // Vite 8 (Rolldown) aceita manualChunks so como funcao; os grupos
+        // sao os mesmos que existiam na forma de objeto.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react'
+          if (/node_modules\/(@firebase|firebase)\//.test(id)) return 'firebase'
+          if (/node_modules\/(recharts|d3-[^/]+|victory-vendor)\//.test(id)) return 'charts'
+          if (/node_modules\/(framer-motion|motion-dom|motion-utils)\//.test(id)) return 'motion'
+          if (/node_modules\/xlsx\//.test(id)) return 'export'
         },
       },
     },
