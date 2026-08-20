@@ -73,16 +73,30 @@ service cloud.firestore {
 
     // Device code auth (YouTube TV style flow)
     // - Unauthenticated Electron app creates a pending code
-    // - Anyone can read (Electron polls for completion)
+    // - Anyone can read one code by name; nobody can list the collection
     // - Authenticated web user completes the code (writes tokens)
     // - Anyone can delete (cleanup)
     match /device_codes/{code} {
       allow create: if request.resource.data.status == 'pending'
                     && request.resource.data.keys().hasAll(['status', 'createdAt', 'expiresAt']);
-      allow read:   if true;
+
+      // `get` precisa ser público: o Electron ainda não está autenticado quando
+      // fica ouvindo o próprio código. Mas `list` NÃO — com ele, qualquer um sem
+      // login faz getDocs(collection('device_codes')) e recebe todos os
+      // documentos, inclusive os já autenticados, que carregam idToken e
+      // accessToken. Sem `list`, é preciso acertar o código de 6 caracteres
+      // dentro da janela de 5 minutos, que é o que o desenho pretendia.
+      allow get:  if true;
+      allow list: if false;
+
       allow update: if request.auth != null
                     && resource.data.status == 'pending'
                     && request.resource.data.status == 'authenticated';
+
+      // Continua público de propósito: o Electron apaga o código logo depois de
+      // ler os tokens, e naquele instante ele pode ainda não ter concluído o
+      // signInWithCredential. Sem `list`, apagar exige conhecer o código de 6
+      // caracteres, então deixa de ser vetor de negação de serviço em massa.
       allow delete: if true;
     }
   }
